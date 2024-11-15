@@ -34,7 +34,7 @@ import java.text.DecimalFormat
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-
+@Preview(showBackground = true)
 @Composable
 fun TimerScreen(
     modifier: Modifier = Modifier,
@@ -108,7 +108,7 @@ fun TimePicker(
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Hours")
+            Text("Hours", fontSize = 20.sp)
             NumberPickerWrapper(
                 initVal = hourVal,
                 maxVal = 99,
@@ -122,7 +122,7 @@ fun TimePicker(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(start = 16.dp, end = 16.dp)
         ) {
-            Text("Minutes")
+            Text("Minutes", fontSize = 20.sp)
             NumberPickerWrapper(
                 initVal = minVal,
                 onNumPick = {
@@ -132,7 +132,7 @@ fun TimePicker(
             )
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Seconds")
+            Text("Seconds", fontSize = 20.sp)
             NumberPickerWrapper(
                 initVal = secVal,
                 onNumPick = {
