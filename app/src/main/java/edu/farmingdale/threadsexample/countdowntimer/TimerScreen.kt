@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +42,7 @@ fun TimerScreen(
     modifier: Modifier = Modifier,
     timerViewModel: TimerViewModel = viewModel()
 ) {
+    val context = LocalContext.current
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Column(
             modifier = modifier
@@ -95,7 +97,7 @@ fun TimerScreen(
                 enabled = timerViewModel.selectedHour +
                         timerViewModel.selectedMinute +
                         timerViewModel.selectedSecond > 0,
-                onClick = timerViewModel::startTimer,
+                onClick = {timerViewModel.startTimer(context)},
                 modifier = modifier.padding(top = 50.dp)
             ) {
                 Text("Start")
