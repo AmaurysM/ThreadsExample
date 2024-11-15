@@ -52,7 +52,7 @@ fun TimerScreen(
             }
             Text(
                 text = timerText(timerViewModel.remainingMillis),
-                fontSize = 40.sp,
+                fontSize = 60.sp,
             )
         }
         TimePicker(
@@ -66,7 +66,7 @@ fun TimerScreen(
                 onClick = timerViewModel::cancelTimer,
                 modifier = modifier.padding(50.dp)
             ) {
-                Text("Cancel")
+                Text("Cancel", fontSize = 20.sp)
             }
         } else {
             Button(
