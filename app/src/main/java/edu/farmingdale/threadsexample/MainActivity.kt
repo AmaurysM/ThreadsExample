@@ -20,8 +20,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             ThreadsExampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting("Android", Modifier.padding(innerPadding))
+                    //Greeting("Android", Modifier.padding(innerPadding))
+                    FibonacciDemoNoBgThrd(modifier = Modifier.padding(innerPadding))
                 }
+
             }
         }
     }
@@ -29,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+
     Text(
         text = "Hello $name!",
         modifier = modifier

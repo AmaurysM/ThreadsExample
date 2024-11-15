@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,11 +20,15 @@ import java.text.NumberFormat
 import java.util.Locale
 
 @Composable
-fun FibonacciDemoNoBgThrd() {
+fun FibonacciDemoNoBgThrd(
+    modifier: Modifier = Modifier
+) {
     var answer by remember { mutableStateOf("") }
     var textInput by remember { mutableStateOf("40") }
 
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         Row {
             TextField(
                 value = textInput,
