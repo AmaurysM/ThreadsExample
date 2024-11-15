@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,13 +42,24 @@ fun TimerScreen(
     timerViewModel: TimerViewModel = viewModel()
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(
+        Column(
             modifier = modifier
                 .padding(20.dp)
                 .size(240.dp),
-            contentAlignment = Alignment.Center
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             if (timerViewModel.isRunning) {
+                LinearProgressIndicator(
+                    progress = animateFloatAsState(
+                        targetValue = timerViewModel.remainingMillis.toFloat() / timerViewModel.totalMillis.toFloat(),
+                        animationSpec = tween(
+                            durationMillis = 1000,
+                            easing = LinearEasing
+                            ), label = ""
+                    ).value,
+                    color = Color.Red
+                )
 
             }
             Text(
@@ -62,11 +74,21 @@ fun TimerScreen(
             onTimePick = timerViewModel::selectTime
         )
         if (timerViewModel.isRunning) {
-            Button(
-                onClick = timerViewModel::cancelTimer,
-                modifier = modifier.padding(50.dp)
-            ) {
-                Text("Cancel", fontSize = 20.sp)
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ){
+                Button(
+                    onClick = timerViewModel::cancelTimer,
+                    modifier = modifier.padding(50.dp)
+                ) {
+                    Text("Cancel", fontSize = 20.sp)
+                }
+                Button(
+                    onClick = timerViewModel::pauseTimer,
+                    modifier = modifier.padding(vertical = 50.dp, horizontal = 40.dp)
+                ) {
+                    Text("Pause", fontSize = 20.sp)
+                }
             }
         } else {
             Button(
