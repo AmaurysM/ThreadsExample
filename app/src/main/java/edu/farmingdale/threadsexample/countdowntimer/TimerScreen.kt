@@ -67,6 +67,7 @@ fun TimerScreen(
             Text(
                 text = timerText(timerViewModel.remainingMillis),
                 fontSize = 60.sp,
+                color = if(timerViewModel.remainingMillis < 10000) Color.Red else Color.Green
             )
         }
         TimePicker(
@@ -83,13 +84,13 @@ fun TimerScreen(
                     onClick = timerViewModel::cancelTimer,
                     modifier = modifier.padding(50.dp)
                 ) {
-                    Text("Cancel", fontSize = 20.sp)
+                    Text("Cancel")
                 }
                 Button(
                     onClick = timerViewModel::pauseTimer,
                     modifier = modifier.padding(vertical = 50.dp, horizontal = 40.dp)
                 ) {
-                    Text("Pause", fontSize = 20.sp)
+                    Text("Pause")
                 }
             }
         } else {
